@@ -9,6 +9,10 @@ const linux = 'linux';
 const target = 'target';
 const appname = 'appname';
 const bundleId = 'bundleId';
+const facebookId = 'facebookId';
+const clientToken = 'clientToken';
+const facebookIdKey = 'facebookIdKey';
+const protocolSchemeKey = 'protocolSchemeKey';
 const launcherIcon = 'launcherIcon';
 const help = 'help';
 
@@ -46,6 +50,12 @@ void main(List<String> arguments) async {
     }
     if (results[launcherIcon] != null) {
       await rename.changeLauncherIcon(results[launcherIcon]);
+    }
+    if (results[facebookId] != null && results[clientToken] != null){
+      await rename.changeFacebookiOSParams(results[facebookId],results[clientToken], platforms);
+    }
+    if (results[facebookIdKey] != null && results[protocolSchemeKey] != null){
+      await rename.changeFacebookAndroidParams(results[facebookIdKey],results[protocolSchemeKey], platforms);
     }
   } on FormatException catch (e) {
     print(e.message);
