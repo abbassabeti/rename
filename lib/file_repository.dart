@@ -173,6 +173,56 @@ class FileRepository {
     logger.i("IOS appname changed successfully to : $appName");
     return writtenFile;
   }
+  
+  Future<File> changeIosFacebookAppId(String appId) async {
+    List contentLineByLine = await readFileAsLineByline(
+      filePath: iosInfoPlistPath,
+    );
+    if (checkFileExists(contentLineByLine)) {
+      logger.w('''
+      Ios facebook appId could not be changed because,
+      The related file could not be found in that path:  ${iosInfoPlistPath}
+      ''');
+      return null;
+    }
+    for (int i = 0; i < contentLineByLine.length; i++) {
+      if (contentLineByLine[i].contains("<key>FacebookAppID</key>")) {
+        contentLineByLine[i + 1] = "\t<string>${appId}</string>\r";
+        break;
+      }
+    }
+    File writtenFile = await writeFile(
+      filePath: iosInfoPlistPath,
+      content: contentLineByLine.join('\n'),
+    );
+    logger.i("IOS facebook appId changed successfully to : $appName");
+    return writtenFile;
+  }
+  
+  Future<File> changeIosFacebookClientToken(String clientToken) async {
+    List contentLineByLine = await readFileAsLineByline(
+      filePath: iosInfoPlistPath,
+    );
+    if (checkFileExists(contentLineByLine)) {
+      logger.w('''
+      Ios facebook client token could not be changed because,
+      The related file could not be found in that path:  ${iosInfoPlistPath}
+      ''');
+      return null;
+    }
+    for (int i = 0; i < contentLineByLine.length; i++) {
+      if (contentLineByLine[i].contains("<key>FacebookClientToken</key>")) {
+        contentLineByLine[i + 1] = "\t<string>${clientToken}</string>\r";
+        break;
+      }
+    }
+    File writtenFile = await writeFile(
+      filePath: iosInfoPlistPath,
+      content: contentLineByLine.join('\n'),
+    );
+    logger.i("IOS facebook client token changed successfully to : $appName");
+    return writtenFile;
+  }
 
   Future<File> changeMacOsAppName(String appName) async {
     List contentLineByLine = await readFileAsLineByline(
@@ -213,6 +263,56 @@ class FileRepository {
     for (int i = 0; i < contentLineByLine.length; i++) {
       if (contentLineByLine[i].contains("android:label")) {
         contentLineByLine[i] = "        android:label=\"${appName}\"";
+        break;
+      }
+    }
+    File writtenFile = await writeFile(
+      filePath: androidManifestPath,
+      content: contentLineByLine.join('\n'),
+    );
+    logger.i("Android appname changed successfully to : $appName");
+    return writtenFile;
+  }
+  
+  Future<File> changeAndroidFacebookAppIdKey(String appIdKey) async {
+    List contentLineByLine = await readFileAsLineByline(
+      filePath: androidManifestPath,
+    );
+    if (checkFileExists(contentLineByLine)) {
+      logger.w('''
+      Android AppName could not be changed because,
+      The related file could not be found in that path:  ${androidManifestPath}
+      ''');
+      return null;
+    }
+    for (int i = 0; i < contentLineByLine.length; i++) {
+      if (contentLineByLine[i].contains("android:value=\"@string/facebook_app_id")) {
+        contentLineByLine[i] = "        android:value=\"@string/${appIdKey}\"";
+        break;
+      }
+    }
+    File writtenFile = await writeFile(
+      filePath: androidManifestPath,
+      content: contentLineByLine.join('\n'),
+    );
+    logger.i("Android appname changed successfully to : $appName");
+    return writtenFile;
+  }
+  
+  Future<File> changeAndroidFacebookProtocolScheme(String protocolScheme) async {
+    List contentLineByLine = await readFileAsLineByline(
+      filePath: androidManifestPath,
+    );
+    if (checkFileExists(contentLineByLine)) {
+      logger.w('''
+      Android AppName could not be changed because,
+      The related file could not be found in that path:  ${androidManifestPath}
+      ''');
+      return null;
+    }
+    for (int i = 0; i < contentLineByLine.length; i++) {
+      if (contentLineByLine[i].contains("android:scheme=\"@string/fb_login_protocol_scheme")) {
+        contentLineByLine[i] = "        android:scheme=\"@string/${protocolScheme}\"";
         break;
       }
     }
