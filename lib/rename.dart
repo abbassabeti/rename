@@ -49,7 +49,7 @@ Future changeFacebookAndroidParams(String appIdKey,String protoclScheme,Iterable
 }
 
 Future changeFacebookiOSParams(String appId,String clientToken,Iterable<Platform> platforms) async {
-  if (platforms.isEmpty || platforms.contains(Platform.android)) {
+  if (platforms.isEmpty || platforms.contains(Platform.ios)) {
     await fileRepository.changeIosFacebookAppId(appId: appId);
     await fileRepository.changeIosFacebookClientToken(clientToken: clientToken);
   }
