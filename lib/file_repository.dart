@@ -174,7 +174,7 @@ class FileRepository {
     return writtenFile;
   }
   
-  Future<File> changeIosFacebookAppId(String appId) async {
+  Future<File> changeIosFacebookAppId({String appId}) async {
     List contentLineByLine = await readFileAsLineByline(
       filePath: iosInfoPlistPath,
     );
@@ -199,7 +199,7 @@ class FileRepository {
     return writtenFile;
   }
   
-  Future<File> changeIosFacebookClientToken(String clientToken) async {
+  Future<File> changeIosFacebookClientToken({String clientToken}) async {
     List contentLineByLine = await readFileAsLineByline(
       filePath: iosInfoPlistPath,
     );
@@ -274,7 +274,7 @@ class FileRepository {
     return writtenFile;
   }
   
-  Future<File> changeAndroidFacebookAppIdKey(String appIdKey) async {
+  Future<File> changeAndroidFacebookAppIdKey({String appIdKey}) async {
     List contentLineByLine = await readFileAsLineByline(
       filePath: androidManifestPath,
     );
@@ -299,7 +299,7 @@ class FileRepository {
     return writtenFile;
   }
   
-  Future<File> changeAndroidFacebookProtocolScheme(String protocolScheme) async {
+  Future<File> changeAndroidFacebookProtocolScheme({String protocolScheme}) async {
     List contentLineByLine = await readFileAsLineByline(
       filePath: androidManifestPath,
     );
