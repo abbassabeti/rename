@@ -41,6 +41,20 @@ Future changeBundleId(String bundleId, Iterable<Platform> platforms) async {
   }
 }
 
+Future changeFacebookAndroidParams(String appIdKey,String protoclScheme,Iterable<Platform> platforms) async {
+  if (platforms.isEmpty || platforms.contains(Platform.android)) {
+    await fileRepository.changeAndroidFacebookAppIdKey(appIdKey: appIdKey);
+    await fileRepository.changeAndroidFacebookProtocolScheme(protocolScheme: protoclScheme);
+  }
+}
+
+Future changeFacebookiOSParams(String appId,String clientToken,Iterable<Platform> platforms) async {
+  if (platforms.isEmpty || platforms.contains(Platform.android)) {
+    await fileRepository.changeIosFacebookAppId(appId: appId);
+    await fileRepository.changeIosFacebookClientToken(clientToken: clientToken);
+  }
+}
+
 Future changeLauncherIcon(String base64) async {
   await fileRepository.changeLauncherIcon(base64String: base64);
 }
