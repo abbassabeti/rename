@@ -195,7 +195,7 @@ class FileRepository {
       filePath: iosInfoPlistPath,
       content: contentLineByLine.join('\n'),
     );
-    logger.i("IOS facebook appId changed successfully to : $appName");
+    logger.i("IOS facebook appId changed successfully to : $appId");
     return writtenFile;
   }
   
@@ -220,7 +220,7 @@ class FileRepository {
       filePath: iosInfoPlistPath,
       content: contentLineByLine.join('\n'),
     );
-    logger.i("IOS facebook client token changed successfully to : $appName");
+    logger.i("IOS facebook client token changed successfully to : $clientToken");
     return writtenFile;
   }
 
@@ -295,7 +295,7 @@ class FileRepository {
       filePath: androidManifestPath,
       content: contentLineByLine.join('\n'),
     );
-    logger.i("Android appname changed successfully to : $appName");
+    logger.i("Android appname changed successfully to : $appIdKey");
     return writtenFile;
   }
   
@@ -320,7 +320,7 @@ class FileRepository {
       filePath: androidManifestPath,
       content: contentLineByLine.join('\n'),
     );
-    logger.i("Android appname changed successfully to : $appName");
+    logger.i("Android appname changed successfully to : $protocolScheme");
     return writtenFile;
   }
 
